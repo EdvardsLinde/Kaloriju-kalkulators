@@ -31,19 +31,24 @@ def calorie_needs(Weight, Height, Age, Gender, Activity_level):
         'surplus': round(surplus_calories)
     }
 
+def action ():
+    Weight = float(input("Enter your weight (kg): "))
+    Height = float(input("Enter your height (cm): "))
+    Age = int(input("Enter your age: "))
+    Gender = input("Enter your gender (male/female): ")
+    Activity_level = input("Enter your activity level (Low activity, Light activity, Moderate activity, High activity, Very high activity): ")
 
-Weight = float(input("Enter your weight (kg): "))
-Height = float(input("Enter your height (cm): "))
-Age = int(input("Enter your age: "))
-Gender = input("Enter your gender (male/female): ")
-Activity_level = input("Enter your activity level (Low activity, Light activity, Moderate activity, High activity, Very high activity): ")
 
+    results = calorie_needs(Weight, Height, Age, Gender, Activity_level)
 
-results = calorie_needs(Weight, Height, Age, Gender, Activity_level)
+    if isinstance(results, dict):
+        print(f"To maintain your weight: {results['maintenance']} kcal/day")
+        print(f"For weight loss (deficit): {results['deficit']} kcal/day")
+        print(f"For weight gain (surplus): {results['surplus']} kcal/day")
+    else:
+        print(results)
 
-if isinstance(results, dict):
-    print(f"To maintain your weight: {results['maintenance']} kcal/day")
-    print(f"For weight loss (deficit): {results['deficit']} kcal/day")
-    print(f"For weight gain (surplus): {results['surplus']} kcal/day")
-else:
-    print(results)
+answer = "yes"
+while answer == "yes":
+    action()
+    answer = input("Gribi atkārtot? (ievadi 'yes'): ")
